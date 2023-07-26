@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+    <style>
+    	.table{
+    		
+    		margin-left: auto;
+            margin-right: auto;
+            background-color:rgb(255, 255, 136);
+    	}
+    	.body
+    	{
+    	text-align: center;
+    	font-style: inherit;
+    	background-color: gray;
+    	}
+    	
+    	
+    </style>
+</head>
+<body class="body">
+    <h2>Employee List</h2>
+    <table border="2" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Marital Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.empId}"></td>
+                <td th:text="${employee.empName}"></td>
+                <td th:text="${employee.empAddress}"></td>
+                <td th:text="${employee.empEmail}"></td>
+                <td th:text="${employee.empMobile}"></td>
+                <td th:text="${employee.empGender}"></td>
+                <td th:text="${#dates.format(employee.empDOB, 'yyyy-MM-dd')}"></td>
+                <td th:text="${employee.empMarriedStatus ? 'Married' : 'Single'}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br><a th:href="@{/addEmployee}">Add Employee</a>
+</body>
+</html>
